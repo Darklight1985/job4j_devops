@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'jenkinks_agent' }
+    agent { label 'jenkins_agent' }
 
     tools {
         git 'Default'
