@@ -36,7 +36,6 @@ class CalcControllerTest {
         assertThat(output.getBody()).isEqualTo(expected);
     }
 
-
     @Test
     public void whenZeroPlusZero() {
         var input = new TwoArgs(0, 3);
