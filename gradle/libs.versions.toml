@@ -1,12 +1,12 @@
 [versions]
 
 lombokVer = '1.18.36'
-springBootVer = '2.7.12'
+springBootVer = '3.4.0'
 junitJupiterVer = '5.10.0'
 junitJupiterApiVer = '5.10.0'
 springDependencyManagementVer = '1.0.13.RELEASE'
 jsonUnitAssertjVer = '2.36.0'
-junitLauncherVer = '1.12.1'
+junitLauncherVer = '1.11.3'
 assertsCoreVer = '3.24.2'
 githubSpotBugsVer = '6.0.26'
 
