@@ -1,0 +1,36 @@
+[versions]
+
+lombokVer = '1.18.36'
+springBootVer = '2.7.12'
+junitJupiterVer = '5.10.0'
+junitJupiterApiVer = '5.10.0'
+springDependencyManagementVer = '1.0.13.RELEASE'
+jsonUnitAssertjVer = '2.36.0'
+junitLauncherVer = '1.12.1'
+assertsCoreVer = '3.24.2'
+githubSpotBugsVer = '6.0.26'
+
+[libraries]
+
+# Spring boot starters
+springBootStarter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBootVer" }
+springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBootVer" }
+
+# Testing
+junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiterVer" }
+junitJupiterApi = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiterApiVer" }
+springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBootVer" }
+jsonUnitAssertj = { module = "net.javacrumbs.json-unit:json-unit-assertj", version.ref = "jsonUnitAssertjVer"}
+junitLauncher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junitLauncherVer"}
+assertsCore = { module = "org.assertj:assertj-core", version.ref = "assertsCoreVer"}
+
+# Helpfull utils
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombokVer" }
+
+[plugins]
+
+springDependencyManagement = { id = "io.spring.dependency-management", version.ref = "springDependencyManagementVer" }
+springframeworkBoot = { id = "org.springframework.boot", version.ref = "springBootVer" }
+githubSpotBugs = { id = "com.github.spotbugs", version.ref = "githubSpotBugsVer"}
+
+[bundles]
