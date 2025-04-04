@@ -75,7 +75,7 @@ class CalcControllerTest {
     @Test
     public void whenTwoTimesThreeThenSix() {
         var input = new TwoArgs(3, 3);
-        var expected = new Result(6);
+        var expected = new Result(9);
         var output = new CalcController().times(input);
         assertThat(output.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
         assertThat(output.getBody()).isEqualTo(expected);
