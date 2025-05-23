@@ -5,68 +5,55 @@ pipeline {
         git 'Default'
     }
 
+    environment {
+        GRADLE_OPTS = "-Xmx1024m"
+        GIT_CREDENTIALS_ID = 'git'
+    }
+
     stages {
-        stage('Prepare Environment') {
+//         stage('SSH Key Scanning') {
+//             steps {
+//                 sh 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
+//             }
+//         }
+//
+//         stage('Checkout') {
+//             steps {
+//                 git url: "git@github.com:Darklight1985/sport_poker.git", branch: 'develop', credentialsId: "${GIT_CREDENTIALS_ID}"
+//             }
+//         }
+
+stage('Debug') {
+    steps {
+        sh 'pwd'
+        sh 'ls -la'
+    }
+}
+
+        stage('Build') {
             steps {
-                script {
-                    sh 'chmod +x ./gradlew'
-                }
+              sh 'chmod +x ./gradlew'
+              sh './gradlew build -x test'
             }
         }
-        stage('Checkstyle Main') {
-            steps {
-                script {
-                    sh './gradlew checkstyleMain'
-                }
-            }
-        }
-        stage('Checkstyle Test') {
-            steps {
-                script {
-                    sh './gradlew checkstyleTest'
-                }
-            }
-        }
-        stage('Compile') {
-            steps {
-                script {
-                    sh './gradlew compileJava'
-                }
-            }
-        }
+
         stage('Test') {
             steps {
-                script {
-                    sh './gradlew test'
-                }
+                   sh './gradlew test'
             }
         }
-        stage('JaCoCo Report') {
+
+        stage('Deploy') {
             steps {
-                script {
-                    sh './gradlew jacocoTestReport'
-                }
-            }
-        }
-        stage('JaCoCo Verification') {
-            steps {
-                script {
-                    sh './gradlew jacocoTestCoverageVerification'
-                }
+                echo 'Deploying...'
+                sh './deploy.sh'
             }
         }
     }
 
-    post {
-        always {
-            script {
-                def buildInfo = "Build number: ${currentBuild.number}\n" +
-                                "Build status: ${currentBuild.currentResult}\n" +
-                                "Started at: ${new Date(currentBuild.startTimeInMillis)}\n" +
-                                "Duration so far: ${currentBuild.durationString}"
-                telegramSend(message: buildInfo)
-            }
-        }
-    }
-
+//    post {
+  //      always {
+  //          cleanWs()
+ //       }
+ //   }
 }
