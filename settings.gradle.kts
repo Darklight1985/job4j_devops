@@ -1,5 +1,13 @@
 rootProject.name = "DevOps"
 
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            from(files("gradle/libs.versions.toml"))
+        }
+    }
+}
+
 buildCache {
     val urlCache = System.getenv("GRADLE_REMOTE_CACHE_URL")
     if (urlCache != null) {
