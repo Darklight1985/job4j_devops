@@ -9,12 +9,18 @@ jsonUnitAssertjVer = '2.36.0'
 junitLauncherVer = '1.11.3'
 assertsCoreVer = '3.24.2'
 githubSpotBugsVer = '6.0.26'
+sbDataJPAVer = "3.4.6"
+liquibaseVer = "4.30.0"
+postgresVer = "42.7.4"
 
 [libraries]
 
 # Spring boot starters
 springBootStarter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBootVer" }
 springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBootVer" }
+springBootStarterDataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "sbDataJPAVer"}
+liquibase = { module = "org.liquibase:liquibase-core", version.ref = "liquibaseVer"}
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresVer"}
 
 # Testing
 junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiterVer" }
