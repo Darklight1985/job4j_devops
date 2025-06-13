@@ -5,6 +5,7 @@ plugins {
 	alias(libs.plugins.springframeworkBoot)
     alias(libs.plugins.springDependencyManagement)
     alias(libs.plugins.githubSpotBugs)
+    alias(libs.plugins.liquibaseGradle)
 }
 
 group = "ru.job4j.devops"
@@ -48,6 +49,7 @@ dependencies {
 	testImplementation(libs.junitJupiter)
 	testImplementation(libs.assertsCore)
 }
+
 
 tasks.withType<Test> {
 	useJUnitPlatform()
@@ -114,3 +116,18 @@ tasks.spotbugsMain {
 tasks.test {
     finalizedBy(tasks.spotbugsMain)
 }
+
+liquibase {
+    activities.register("main") {
+        this.arguments = mapOf(
+            "logLevel"       to "info",
+            "url"            to "jdbc:postgresql://localhost:5432/job4j_devops",
+            "username"       to "postgres",
+            "password"       to "password",
+            "classpath"      to "src/main/resources",
+            "changelogFile"  to "db/changelog/db.changelog-master.xml"
+        )
+    }
+    runList = "main"
+}
+
