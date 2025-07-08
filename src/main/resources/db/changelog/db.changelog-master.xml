@@ -6,9 +6,12 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <include file="changeset/001_ddl_create_tables.sql"
-             author="Petr Arsentev"
+             author="Dmitriy Kolesnev"
              relativeToChangelogFile="true"/>
     <include file="changeset/002_ddl_add_column_users.sql"
+             author="Dmitriy Kolesnev"
+             relativeToChangelogFile="true"/>
+    <include file="changeset/003_ddl_create_results.sql"
              author="Dmitriy Kolesnev"
              relativeToChangelogFile="true"/>
 </databaseChangeLog>
