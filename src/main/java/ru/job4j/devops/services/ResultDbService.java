@@ -1,6 +1,6 @@
 package ru.job4j.devops.services;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.devops.models.Result;
 import ru.job4j.devops.models.TwoArgs;
@@ -10,10 +10,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ResultDbService implements ResultService {
+
     private final ResultRepository resultRepository;
 
+    @Override
     public Result save(TwoArgs twoArgs) {
         var result = new Result();
         result.setFirstArg(twoArgs.getFirst());
@@ -24,6 +26,7 @@ public class ResultDbService implements ResultService {
         return resultRepository.save(result);
     }
 
+    @Override
     public List<Result> findAll() {
         return resultRepository.findAll();
     }

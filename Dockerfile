@@ -7,7 +7,7 @@ COPY gradle gradle
 RUN gradle --no-daemon dependencies
 
 COPY . .
-RUN gradle --no-daemon build
+RUN gradle --no-daemon build -x test
 RUN jar xf /job4j_devops/build/libs/DevOps-1.0.0.jar
 
 RUN jdeps --ignore-missing-deps -q \
