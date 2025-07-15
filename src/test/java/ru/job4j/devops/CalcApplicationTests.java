@@ -9,10 +9,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@EnableAutoConfiguration(exclude = {
-        DataSourceAutoConfiguration.class,
-        LiquibaseAutoConfiguration.class
-})
 class CalcApplicationTests {
 
     @Test
