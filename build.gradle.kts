@@ -117,6 +117,25 @@ tasks.test {
     finalizedBy(tasks.spotbugsMain)
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.liquibase:liquibase-core:4.30.0")
+    }
+}
+
+dependencies {
+    liquibaseRuntime("org.liquibase:liquibase-core:4.30.0")
+    liquibaseRuntime("org.postgresql:postgresql:42.7.4")
+    liquibaseRuntime("javax.xml.bind:jaxb-api:2.3.1")
+    liquibaseRuntime("ch.qos.logback:logback-core:1.5.15")
+    liquibaseRuntime("ch.qos.logback:logback-classic:1.5.15")
+    liquibaseRuntime("info.picocli:picocli:4.6.1")
+}
+
+
 liquibase {
     activities.register("main") {
         this.arguments = mapOf(
