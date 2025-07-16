@@ -39,5 +39,6 @@ springDependencyManagement = { id = "io.spring.dependency-management", version.r
 springframeworkBoot = { id = "org.springframework.boot", version.ref = "springBootVer" }
 githubSpotBugs = { id = "com.github.spotbugs", version.ref = "githubSpotBugsVer"}
 liquibaseGradle = { id = "org.liquibase.gradle", version = "2.2.0" }
+dotEnv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 
 [bundles]
