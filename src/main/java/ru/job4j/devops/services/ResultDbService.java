@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.devops.models.Result;
 import ru.job4j.devops.models.TwoArgs;
-import ru.job4j.devops.repositories.ResultRepository;
+import ru.job4j.devops.repository.ResultRepository;
 
 import java.time.LocalDate;
 import java.util.List;
