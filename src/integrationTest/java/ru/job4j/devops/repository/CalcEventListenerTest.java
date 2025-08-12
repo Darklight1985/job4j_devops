@@ -31,16 +31,15 @@ public class CalcEventListenerTest {
             DockerImageName.parse("apache/kafka:3.7.2")
     );
 
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    private CalcEventRepository calcEventRepository;
+    private final CalcEventRepository calcEventRepository;
 
-    private static final Long EVENT_ID = 2L;
     private static final Long USER_ID = 1L;
 
     public CalcEventListenerTest(@Autowired KafkaTemplate<String, Object> kafkaTemplate,
                                  @Autowired CalcEventRepository calcEventRepository) {
-        this.kafkaTemplate = kafkaTemplate;
+        this.kafkaTemplate = new KafkaTemplate<>(kafkaTemplate.getProducerFactory());
         this.calcEventRepository = calcEventRepository;
     }
 
