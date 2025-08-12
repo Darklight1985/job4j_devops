@@ -15,14 +15,16 @@ import ru.job4j.devops.services.CalcService;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class CalcEventsTest {
-    private static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(
+
+    private static final PostgreSQLContainer<?> POSTGRES = new PostgreSQLContainer<>(
             "postgres:16-alpine"
     ).withReuse(true);
 
     private final CalcService calcService;
 
     private static final Long USER_ID = 1L;
-    private static final User user = new User();
+
+    private static final User USER = new User();
 
     CalcEventsTest(@Autowired CalcService calcService) {
         this.calcService = calcService;
@@ -30,25 +32,25 @@ class CalcEventsTest {
 
     @DynamicPropertySource
     public static void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgres::getJdbcUrl);
-        registry.add("spring.datasource.username", postgres::getUsername);
-        registry.add("spring.datasource.password", postgres::getPassword);
+        registry.add("spring.datasource.url", POSTGRES::getJdbcUrl);
+        registry.add("spring.datasource.username", POSTGRES::getUsername);
+        registry.add("spring.datasource.password", POSTGRES::getPassword);
     }
 
     @BeforeAll
     static void beforeAll() {
-        postgres.start();
-        user.setId(USER_ID);
+        POSTGRES.start();
+        USER.setId(USER_ID);
     }
 
     @AfterAll
     static void afterAll() {
-        postgres.stop();
+        POSTGRES.stop();
     }
 
     @Test
     public void whenSaveUser() {
-        CalcEvent calcEvent = calcService.add(user, 1, 2);
+        CalcEvent calcEvent = calcService.add(USER, 1, 2);
         Assertions.assertEquals(calcEvent.getUserId(), USER_ID);
         Assertions.assertEquals(3.0, calcEvent.getResult());
     }
