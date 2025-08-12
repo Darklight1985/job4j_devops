@@ -45,11 +45,14 @@ dependencies {
     implementation(libs.springBootStarterDataJpa)
     implementation(libs.liquibase)
     implementation(libs.postgresql)
+    implementation(libs.kafka)
 	testImplementation(libs.springBootStarterTest)
 	testRuntimeOnly(libs.junitLauncher)
 	testImplementation(libs.junitJupiter)
 	testImplementation(libs.assertsCore)
     testImplementation(libs.testContainers)
+    testImplementation(libs.awaitility)
+    testImplementation(libs.testContainersKafka)
 }
 
 
