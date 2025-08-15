@@ -16,48 +16,55 @@ pipeline {
         stage('Checkstyle Main') {
             steps {
                 script {
-                    sh './gradlew checkstyleMain'
+                    sh './gradlew checkstyleMain -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('Checkstyle Test') {
             steps {
                 script {
-                    sh './gradlew checkstyleTest'
+                    sh './gradlew checkstyleTest -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('Compile') {
             steps {
                 script {
-                    sh './gradlew compileJava'
+                    sh './gradlew compileJava -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('Test') {
             steps {
                 script {
-                    sh './gradlew test'
+                    sh './gradlew test -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('JaCoCo Report') {
             steps {
                 script {
-                    sh './gradlew jacocoTestReport'
+                    sh './gradlew jacocoTestReport -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('JaCoCo Verification') {
             steps {
                 script {
-                    sh './gradlew jacocoTestCoverageVerification'
+                    sh './gradlew jacocoTestCoverageVerification -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('Docker Build') {
             steps {
                sh 'docker build -t job4j_devops .'
+            }
+        }
+        stage('Update DB') {
+            steps {
+                script {
+                    sh './gradlew update -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+                }
             }
         }
     }
