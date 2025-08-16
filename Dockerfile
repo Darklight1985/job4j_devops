@@ -3,6 +3,7 @@ RUN mkdir job4j_devops
 WORKDIR /job4j_devops
 
 COPY build.gradle.kts settings.gradle.kts gradle.properties gradle/libs.versions.toml ./
+COPY env/.env.local env/.env.local
 COPY gradle gradle
 RUN gradle --no-daemon dependencies
 
@@ -26,8 +27,8 @@ RUN jlink \
 
 FROM debian:bookworm-slim
 ENV GRADLE_HOME=/usr/local/gradle-8.11.1
-ENV PATH=$GRADLE_HOME/bin:$PATH
 ENV JAVA_HOME=/user/java/jdk21
+ENV PATH="$JAVA_HOME/bin:$PATH"
 COPY --from=builder /slim-jre $JAVA_HOME
 COPY --from=builder /job4j_devops/build/libs/DevOps-1.0.0.jar .
 ENTRYPOINT ["java", "-jar", "DevOps-1.0.0.jar"]
