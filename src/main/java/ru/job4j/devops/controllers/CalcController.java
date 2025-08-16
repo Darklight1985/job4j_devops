@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("calc")
 @AllArgsConstructor
 public class CalcController {
+
     private final ResultService resultService;
 
     @PostMapping("summarise")
