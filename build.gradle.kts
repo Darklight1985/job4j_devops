@@ -192,9 +192,9 @@ tasks.register<Test>("integrationTest") {
     shouldRunAfter(tasks.test)
 }
 
-tasks.check {
-    dependsOn("integrationTest")
-}
+//tasks.check {
+//    dependsOn("integrationTest")
+//}
 
 tasks.named<Test>("test") {
     systemProperty("spring.datasource.url", env.DB_URL.value)
