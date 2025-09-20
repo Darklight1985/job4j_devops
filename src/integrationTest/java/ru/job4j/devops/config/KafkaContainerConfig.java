@@ -5,7 +5,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.kafka.KafkaContainer;
 import org.testcontainers.utility.DockerImageName;
 
-public class KafkaContainerConfig extends PostgresContainerConfig {
+public class KafkaContainerConfig {
 
     private static final KafkaContainer KAFKA = new KafkaContainer(
             DockerImageName.parse("apache/kafka:3.7.2")

@@ -161,45 +161,45 @@ liquibase {
     runList = "main"
 }
 
-//val integrationTest by sourceSets.creating {
-//    java {
-//        srcDir("src/integrationTest/java")
-//    }
-//    resources {
-//        srcDir("src/integrationTest/resources")
-//    }
-//
-//    // Let the integrationTest classpath include the main and test outputs
-//    compileClasspath += sourceSets["main"].output + sourceSets["test"].output
-//    runtimeClasspath += sourceSets["main"].output + sourceSets["test"].output
-//}
-//
-//val integrationTestImplementation by configurations.getting {
-//    extendsFrom(configurations["testImplementation"])
-//}
-//val integrationTestRuntimeOnly by configurations.getting {
-//    extendsFrom(configurations["testRuntimeOnly"])
-//}
+val integrationTest by sourceSets.creating {
+    java {
+        srcDir("src/integrationTest/java")
+    }
+    resources {
+        srcDir("src/integrationTest/resources")
+    }
 
-//tasks.register<Test>("integrationTest") {
-//    description = "Runs the integration tests."
-//    group = "verification"
-//
-//    testClassesDirs = integrationTest.output.classesDirs
-//    classpath = integrationTest.runtimeClasspath
-//
-//    // Usually run after regular unit tests
-//    shouldRunAfter(tasks.test)
-//}
+    // Let the integrationTest classpath include the main and test outputs
+    compileClasspath += sourceSets["main"].output + sourceSets["test"].output
+    runtimeClasspath += sourceSets["main"].output + sourceSets["test"].output
+}
 
-//tasks.check {
-//    dependsOn("integrationTest")
-//}
+val integrationTestImplementation by configurations.getting {
+    extendsFrom(configurations["testImplementation"])
+}
+val integrationTestRuntimeOnly by configurations.getting {
+    extendsFrom(configurations["testRuntimeOnly"])
+}
 
-//tasks.named<Test>("test") {
-//    systemProperty("spring.datasource.url", env.DB_URL.value)
-//    systemProperty("spring.datasource.username", env.DB_USERNAME.value)
-//    systemProperty("spring.datasource.password", env.DB_PASSWORD.value)
-//}
+tasks.register<Test>("integrationTest") {
+    description = "Runs the integration tests."
+    group = "verification"
+
+    testClassesDirs = integrationTest.output.classesDirs
+    classpath = integrationTest.runtimeClasspath
+
+    // Usually run after regular unit tests
+    shouldRunAfter(tasks.test)
+}
+
+tasks.check {
+    dependsOn("integrationTest")
+}
+
+tasks.named<Test>("test") {
+    systemProperty("spring.datasource.url", env.DB_URL.value)
+    systemProperty("spring.datasource.username", env.DB_USERNAME.value)
+    systemProperty("spring.datasource.password", env.DB_PASSWORD.value)
+}
 
 
