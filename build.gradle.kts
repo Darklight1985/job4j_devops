@@ -175,11 +175,11 @@ publishing {
     }
     repositories {
         maven {
-            url = uri("http://192.168.0.106:8081/repository/maven-releases/")
+            url = uri("http://192.168.0.200:8091/repository/maven-releases/")
             isAllowInsecureProtocol = true
             credentials {
-                username = "devops"
-                password = "password"
+                username = findProperty("repoUser") as String?
+                password = findProperty("repoPassword") as String?
             }
         }
     }
