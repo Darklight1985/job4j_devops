@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.githubSpotBugs)
     alias(libs.plugins.liquibaseGradle)
     alias(libs.plugins.dotEnv)
+    alias(libs.plugins.mavenPublish)
 }
 
 group = "ru.job4j.devops"
@@ -35,8 +36,13 @@ tasks.jacocoTestCoverageVerification {
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
+    maven {
+        url = uri("http://192.168.0.200:8091/repository/maven-public/")
+        isAllowInsecureProtocol = true
+    }
 }
+
 
 dependencies {
     compileOnly(libs.lombok)
