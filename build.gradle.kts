@@ -167,6 +167,25 @@ liquibase {
     runList = "main"
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            url = uri("http://192.168.0.106:8081/repository/maven-releases/")
+            isAllowInsecureProtocol = true
+            credentials {
+                username = "devops"
+                password = "password"
+            }
+        }
+    }
+}
+
+
 //val integrationTest by sourceSets.creating {
 //    java {
 //        srcDir("src/integrationTest/java")
