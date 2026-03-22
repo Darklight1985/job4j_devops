@@ -167,6 +167,8 @@ liquibase {
     runList = "main"
 }
 
+
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {

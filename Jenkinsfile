@@ -1,10 +1,6 @@
 pipeline {
     agent { label 'jenkins_agent' }
 
-    tools {
-        git 'Default'
-    }
-
     stages {
         stage('Prepare Environment') {
             steps {
@@ -72,7 +68,7 @@ pipeline {
             steps {
                 script {
                     // Получаем текущий тег, если он есть
-                    def gitTag = sh(script: 'git describe --tags --exact-match', returnStdout: true).trim()
+                    def gitTag = sh(script: 'git describe --tags --exact-match 2>/dev/null || true', returnStdout: true).trim()
 
                     // Если тег существует, публикуем образ
                     if (gitTag) {
@@ -98,7 +94,6 @@ pipeline {
                 }
             }
         }
-
     }
 
     post {
