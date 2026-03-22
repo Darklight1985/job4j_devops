@@ -67,6 +67,38 @@ pipeline {
                 }
             }
         }
+
+        stage('Check Git Tag') {
+            steps {
+                script {
+                    // Получаем текущий тег, если он есть
+                    def gitTag = sh(script: 'git describe --tags --exact-match', returnStdout: true).trim()
+
+                    // Если тег существует, публикуем образ
+                    if (gitTag) {
+                        echo "Tag found: ${gitTag}. Proceeding with Docker build."
+
+                        def imageName = "192.168.0.200:8082/job4j_devops:${gitTag}"
+
+                        withCredentials([usernamePassword(
+                          credentialsId: 'nexus-docker-creds',
+                          usernameVariable: 'NEXUS_USER',
+                          passwordVariable: 'NEXUS_PASS'
+                        )]) {
+                            sh """
+                              echo "\$NEXUS_PASS" | docker login 192.168.0.200:8082 -u "\$NEXUS_USER" --password-stdin
+                              docker build -t ${imageName} .
+                              docker push ${imageName}
+                              docker logout 192.168.0.200:8082
+                            """
+                        }
+                    } else {
+                        echo "No Git tag found. Skipping Docker build."
+                    }
+                }
+            }
+        }
+
     }
 
     post {
