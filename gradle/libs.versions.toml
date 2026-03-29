@@ -26,6 +26,8 @@ postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresVer"
 kafka = { module = "org.springframework.kafka:spring-kafka" }
 awaitility = { module = "org.awaitility:awaitility" }
 testContainersKafka = {module = "org.testcontainers:kafka", version.ref = "testContainersKafkaVer"}
+springActuator = {module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "springBootVer" }
+prometheus = { module = "io.micrometer:micrometer-registry-prometheus"}
 
 # Testing
 junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiterVer" }

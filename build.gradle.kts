@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.liquibase)
     implementation(libs.postgresql)
     implementation(libs.kafka)
+    implementation(libs.springActuator)
+    implementation(libs.prometheus)
 	testImplementation(libs.springBootStarterTest)
 	testRuntimeOnly(libs.junitLauncher)
 	testImplementation(libs.junitJupiter)
