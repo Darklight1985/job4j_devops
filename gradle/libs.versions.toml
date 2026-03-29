@@ -14,6 +14,7 @@ liquibaseVer = "4.30.0"
 postgresVer = "42.7.4"
 testContainersVer = "1.20.4"
 testContainersKafkaVer = "1.20.4"
+lokiVer = "1.6.0"
 
 [libraries]
 
@@ -28,6 +29,7 @@ awaitility = { module = "org.awaitility:awaitility" }
 testContainersKafka = {module = "org.testcontainers:kafka", version.ref = "testContainersKafkaVer"}
 springActuator = {module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "springBootVer" }
 prometheus = { module = "io.micrometer:micrometer-registry-prometheus"}
+loki = {module = "com.github.loki4j:loki-logback-appender", version.ref = "lokiVer"}
 
 # Testing
 junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiterVer" }

@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.kafka)
     implementation(libs.springActuator)
     implementation(libs.prometheus)
+    implementation(libs.loki)
 	testImplementation(libs.springBootStarterTest)
 	testRuntimeOnly(libs.junitLauncher)
 	testImplementation(libs.junitJupiter)
