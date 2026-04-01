@@ -41,6 +41,7 @@ public class CalculatorService {
                 }
                 result = a / b;
                 break;
+            default: throw new ArithmeticException("Unknown operation: " + operation);
         }
 
         // Увеличиваем счетчик операций
