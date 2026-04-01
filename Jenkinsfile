@@ -9,17 +9,20 @@ pipeline {
                 }
             }
         }
-        stage('Checkstyle Main') {
-            steps {
-                script {
-                    sh './gradlew checkstyleMain -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+        parallel {
+            stage('Checkstyle Main') {
+                steps {
+                    script {
+                        sh './gradlew checkstyleMain -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+                    }
                 }
             }
-        }
-        stage('Checkstyle Test') {
-            steps {
-                script {
-                    sh './gradlew checkstyleTest -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+
+            stage('Checkstyle Test') {
+                steps {
+                    script {
+                        sh './gradlew checkstyleTest -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+                    }
                 }
             }
         }
@@ -30,36 +33,38 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            steps {
-                script {
-                    sh './gradlew test -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+        parallel {
+            stage('Test') {
+                steps {
+                    script {
+                        sh './gradlew test -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+                    }
                 }
             }
-        }
-        stage('JaCoCo Report') {
-            steps {
-                script {
-                    sh './gradlew jacocoTestReport -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+            stage('JaCoCo Report') {
+                steps {
+                    script {
+                        sh './gradlew jacocoTestReport -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+                    }
                 }
             }
-        }
-        stage('JaCoCo Verification') {
-            steps {
-                script {
-                    sh './gradlew jacocoTestCoverageVerification -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+            stage('JaCoCo Verification') {
+                steps {
+                    script {
+                        sh './gradlew jacocoTestCoverageVerification -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+                    }
                 }
             }
-        }
-        stage('Docker Build') {
-            steps {
-               sh 'docker build -t job4j_devops .'
+            stage('Docker Build') {
+                steps {
+                   sh 'docker build -t job4j_devops .'
+                }
             }
-        }
-        stage('Update DB') {
-            steps {
-                script {
-                    sh './gradlew update -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+            stage('Update DB') {
+                steps {
+                    script {
+                        sh './gradlew update -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+                    }
                 }
             }
         }
