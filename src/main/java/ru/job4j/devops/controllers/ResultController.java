@@ -1,7 +1,5 @@
 package ru.job4j.devops.controllers;
 
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,8 +13,7 @@ import ru.job4j.devops.services.CalculatorService;
 @RequiredArgsConstructor
 public class ResultController {
 
-    private final MeterRegistry meterRegistry = new SimpleMeterRegistry();
-    private final CalculatorService calcService = new CalculatorService(meterRegistry);
+    private final CalculatorService calcService;
 
     @PostMapping("operations")
     public double times(@RequestBody ThreeArgs threeArgs) {
