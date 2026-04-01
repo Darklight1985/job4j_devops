@@ -30,6 +30,8 @@ testContainersKafka = {module = "org.testcontainers:kafka", version.ref = "testC
 springActuator = {module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "springBootVer" }
 prometheus = { module = "io.micrometer:micrometer-registry-prometheus"}
 loki = {module = "com.github.loki4j:loki-logback-appender", version.ref = "lokiVer"}
+microCore = {module = "io.micrometer:micrometer-core"}
+microReg = {module = "io.micrometer:micrometer-registry-prometheus"}
 
 # Testing
 junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiterVer" }

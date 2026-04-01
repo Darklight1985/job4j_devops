@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.devops.models.Result;
+import ru.job4j.devops.models.ThreeArgs;
 import ru.job4j.devops.models.TwoArgs;
+import ru.job4j.devops.services.CalculatorService;
 import ru.job4j.devops.services.ResultService;
 
 import java.time.LocalDate;
@@ -16,6 +18,7 @@ import java.util.List;
 public class CalcController {
 
     private final ResultService resultService;
+    private final CalculatorService calcService;
 
     @PostMapping("summarise")
     public ResponseEntity<Result> summarise(@RequestBody TwoArgs twoArgs) {
@@ -36,5 +39,10 @@ public class CalcController {
         result.setOperation("+");
         result.setCreateDate(LocalDate.now());
         return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("operations")
+    public double times(@RequestBody ThreeArgs threeArgs) {
+        return calcService.add(threeArgs.getFirst(), threeArgs.getSecond(), threeArgs.getOperation());
     }
 }

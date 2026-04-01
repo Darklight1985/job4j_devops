@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.springActuator)
     implementation(libs.prometheus)
     implementation(libs.loki)
+    implementation(libs.microCore)
+    implementation(libs.microReg)
 	testImplementation(libs.springBootStarterTest)
 	testRuntimeOnly(libs.junitLauncher)
 	testImplementation(libs.junitJupiter)
